@@ -9,7 +9,6 @@
           <router-link to="/tasks/new" class="item">
             <i class="plus circle icon"></i> New
           </router-link>
-      
         </div>
       </div>
     </div>
