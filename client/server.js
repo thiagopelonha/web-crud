@@ -8,7 +8,7 @@ const routes = require('./api/routes/task.routes');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  'mongodb://localhost:27017/web-crud',
+  '<YOUR_MONGO_DB_DATABASE_URL>',
   { useNewUrlParser: true }
 );
 
