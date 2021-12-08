@@ -1,23 +1,20 @@
 <template>
- <form action="#" @submit.prevent="onSubmit">
+  <form action="#" @submit.prevent="onSubmit">
     <p v-if="errorsPresent" class="error">Please fill out both fields!</p>
 
-
     <div class="ui labeled input fluid">
-      <div class="ui label">
-        <i class="calendar plus icon"></i>task
-      </div>
-      <input type="text" placeholder="Enter task..." v-model="task.task1" />
+      <div class="ui label"><i class="calendar plus icon"></i> Task</div>
+      <input type="text" placeholder="Enter task..." v-model="task.name" />
     </div>
 
     <div class="ui labeled input fluid">
-      <div class="ui label">
-   <i class="info circle icon"></i> Details
-      </div>
-      <input type="text" placeholder="Enter Details" v-model="task.task2" />
+      <div class="ui label"><i class="info circle icon"></i> Details</div>
+      <input
+        type="text"
+        placeholder="Enter Details"
+        v-model="task.description"
+      />
     </div>
-
-    
 
     <button class="positive ui button">Submit</button>
   </form>
@@ -25,33 +22,33 @@
 
 <script>
 export default {
-  name: 'task-form',
+  name: "task-form",
   props: {
     task: {
       type: Object,
       required: false,
       default: () => {
         return {
-          task1: '',
-          task2: ''
+          name: "",
+          description: "",
         };
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      errorsPresent: false
+      errorsPresent: false,
     };
   },
   methods: {
-    onSubmit: function() {
-      if (this.task.task1 === '' || this.task.task2 === '') {
+    onSubmit: function () {
+      if (this.task.name === "" || this.task.description === "") {
         this.errorsPresent = true;
       } else {
-        this.$emit('createOrUpdate', this.task);
+        this.$emit("createOrUpdate", this.task);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

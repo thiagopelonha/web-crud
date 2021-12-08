@@ -4,17 +4,16 @@
     <table id="tasks" class="ui celled compact table">
       <thead>
         <tr>
-          <th><i class="calendar plus icon"></i>Task</th>
-          <th><i class="info circle icon"></i>Detail</th>
-          <th><i class="lock open icon"></i></th>
+          <th><i class="calendar plus icon"></i> Task</th>
+          <th><i class="info circle icon"></i> Detail</th>
+          <th><i class="eye icon"></i></th>
           <th><i class="edit icon"></i></th>
           <th><i class="trash icon"></i></th>
-          <th colspan="3"></th>
         </tr>
       </thead>
       <tr v-for="(task, i) in tasks" :key="i">
-        <td>{{ task.task1 }}</td>
-        <td>{{ task.task2 }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.description }}</td>
         <td width="75" class="center aligned">
           <router-link :to="{ name: 'show', params: { id: task._id } }"
             >Show</router-link
