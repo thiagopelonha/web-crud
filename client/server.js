@@ -53,4 +53,4 @@ app.use((req, res) => {
 });
 
 // Just a log to know the server is running
-console.log(`Listening on ${port}`);
+console.log(`Listening on 3000`);
