@@ -1,56 +1,60 @@
 <template>
-  <div id="app">
-    <div class="ui inverted segment navbar">
-      <div class="ui center aligned container">
-        <div class="ui large secondary inverted pointing menu compact">
-          <router-link to="/tasks" exact class="item">
-           <i class="tasks icon"></i> Tasks
-          </router-link>
-          <router-link to="/tasks/new" class="item">
-            <i class="plus circle icon"></i> New
-          </router-link>
-        </div>
-      </div>
-    </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
 
-    <div class="ui text container">
-      <div class="ui one column grid">
-        <div class="column">
-          <router-view />
-        </div>
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
       </div>
-    </div>
-  </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld';
+
 export default {
-  name: 'app'
+  name: 'App',
+
+  components: {
+    HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
 };
 </script>
-
-<style>
-#app > div.navbar {
-  margin-bottom: 1.5em;
-}
-.myFlash {
-  width: 250px;
-  margin: 10px;
-  position: absolute;
-  top: 50;
-  right: 0;
-}
-input {
-  width: 300px;
-}
-div.label {
-  width: 120px;
-}
-div.input {
-  margin-bottom: 10px;
-}
-button.ui.button {
-  margin-top: 15px;
-  display: block;
-}
-</style>
