@@ -36,6 +36,7 @@ export default {
     };
   },
   methods: {
+    // Methods to emit event from component
     onDestroy: async function (id) {
       const sure = window.confirm("Are you sure?");
       if (!sure) return;

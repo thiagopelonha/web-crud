@@ -68,7 +68,7 @@ export default {
       valid: false,
     };
   },
-  // Method to sendFrom, emiting event to parent view
+  // Method to sendFrom, emiting event to view
   methods: {
     sendForm: function () {
       if (this.valid) {

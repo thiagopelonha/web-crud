@@ -1,19 +1,18 @@
+// Importing axios to create requests to my API
 import axios from "axios";
-import Vue from "vue";
-
-const vm = new Vue();
 const baseURL = "http://localhost:3000/tasks/";
 
+// function to handle Errors on API
+// receives our success functions but if
+// there are any problem, it will run
 const handleError =
   (fn) =>
   (...params) =>
     fn(...params).catch((error) => {
-      vm.flash(
-        `${error.response.status}: ${error.response.statusText}`,
-        "error"
-      );
+      console.error(error);
     });
 
+// Exporting my functions to use in my templates
 export const api = {
   gettask: handleError(async (id) => {
     const res = await axios.get(baseURL + id);

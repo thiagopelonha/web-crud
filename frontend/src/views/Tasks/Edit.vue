@@ -29,6 +29,7 @@ export default {
     };
   },
   methods: {
+    // Methods to emit event from component
     createOrUpdate: async function (task) {
       await api.updatetask(task);
       this.$router.push(`/tasks/${task._id}`);

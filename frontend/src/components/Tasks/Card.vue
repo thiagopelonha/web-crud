@@ -24,6 +24,7 @@ export default {
   name: "task-card",
   // Props to receive task and mount component
   props: {
+    // Props to pass by view to component, enabling to use into our views
     task: {
       type: Object,
       required: false,
@@ -45,6 +46,7 @@ export default {
     },
   },
   methods: {
+    // Method to emit our received event from view
     destroy: function (id) {
       if (!this.editing) {
         this.$emit("onDestroy", id);

@@ -23,6 +23,7 @@ export default {
     "task-form": taskForm,
   },
   methods: {
+    // Methods to emit event from component
     createOrUpdate: async function (task) {
       const res = await api.createtask(task);
       this.$router.push(`/tasks/${res._id}`);
