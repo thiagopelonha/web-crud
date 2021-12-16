@@ -1,56 +1,45 @@
 <template>
-  <div>
-    <h1>tasks</h1>
-    <table id="tasks" class="ui celled compact table">
-      <thead>
-        <tr>
-          <th><i class="calendar plus icon"></i> Task</th>
-          <th><i class="info circle icon"></i> Detail</th>
-          <th><i class="eye icon"></i></th>
-          <th><i class="edit icon"></i></th>
-          <th><i class="trash icon"></i></th>
-        </tr>
-      </thead>
-      <tr v-for="(task, i) in tasks" :key="i">
-        <td>{{ task.name }}</td>
-        <td>{{ task.description }}</td>
-        <td width="75" class="center aligned">
-          <router-link :to="{ name: 'show', params: { id: task._id } }"
-            >Show</router-link
-          >
-        </td>
-        <td width="75" class="center aligned">
-          <router-link :to="{ name: 'edit', params: { id: task._id } }"
-            >Edit</router-link
-          >
-        </td>
-        <td
-          width="75"
-          class="center aligned"
-          @click.prevent="onDestroy(task._id)"
-        >
-          <a :href="`/tasks/${task._id}`">Delete</a>
-        </td>
-      </tr>
-    </table>
-  </div>
+  <v-col cols="12">
+    <v-row>
+      <h2>All your tasks</h2>
+      <v-spacer></v-spacer>
+      <v-btn color="success" href="/tasks/new">
+        <v-icon class="mr-2">mdi-clipboard-plus-outline</v-icon>
+        New task
+      </v-btn>
+    </v-row>
+    <v-row>
+      <v-list
+        class="overflow-auto"
+        v-for="(task, i) in tasks"
+        cols="auto"
+        :key="i"
+      >
+        <task-card @onDestroy="onDestroy" :task="task" :editing="false" />
+      </v-list>
+    </v-row>
+  </v-col>
 </template>
 
 <script>
 import { api } from "../helpers/helpers";
+import TaskCard from "../components/Tasks/Card.vue";
+
 export default {
   name: "tasks",
+  components: {
+    "task-card": TaskCard,
+  },
   data() {
     return {
       tasks: [],
     };
   },
   methods: {
-    async onDestroy(id) {
+    onDestroy: async function (id) {
       const sure = window.confirm("Are you sure?");
       if (!sure) return;
       await api.deletetask(id);
-      this.flash("task deleted sucessfully!", "success");
       const newtasks = this.tasks.filter((task) => task._id !== id);
       this.tasks = newtasks;
     },

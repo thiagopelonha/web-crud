@@ -1,8 +1,17 @@
 <template>
-  <div>
-    <h1>Edit task</h1>
-    <task-form @createOrUpdate="createOrUpdate" :task="this.task"></task-form>
-  </div>
+  <v-col cols="12">
+    <v-row>
+      <v-btn icon href="/tasks">
+        <v-icon> mdi-chevron-left </v-icon>
+      </v-btn>
+      <h2>Edit task</h2>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <task-form @createOrUpdate="createOrUpdate" :task="this.task" />
+      </v-col>
+    </v-row>
+  </v-col>
 </template>
 
 <script>
@@ -22,13 +31,11 @@ export default {
   methods: {
     createOrUpdate: async function (task) {
       await api.updatetask(task);
-      this.flash("task updated sucessfully!", "success");
       this.$router.push(`/tasks/${task._id}`);
     },
   },
   async mounted() {
     this.task = await api.gettask(this.$route.params.id);
-    console.error(this.task);
   },
 };
 </script>

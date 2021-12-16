@@ -1,24 +1,32 @@
 <template>
-  <div>
-    <h1>New task</h1>
-    <task-form @createOrUpdate="createOrUpdate"></task-form>
-  </div>
+  <v-col cols="12">
+    <v-row>
+      <v-btn icon href="/tasks">
+        <v-icon> mdi-chevron-left </v-icon>
+      </v-btn>
+      <h2>New task</h2>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <task-form @createOrUpdate="createOrUpdate" />
+      </v-col>
+    </v-row>
+  </v-col>
 </template>
 
 <script>
-import taskForm from '../../components/Tasks/Form.vue';
-import { api } from '../../helpers/helpers';
+import taskForm from "../../components/Tasks/Form.vue";
+import { api } from "../../helpers/helpers";
 export default {
-  name: 'new-task',
+  name: "new-task",
   components: {
-    'task-form': taskForm
+    "task-form": taskForm,
   },
   methods: {
-    createOrUpdate: async function(task) {
+    createOrUpdate: async function (task) {
       const res = await api.createtask(task);
-      this.flash('task created', 'success');
       this.$router.push(`/tasks/${res._id}`);
-    }
-  }
+    },
+  },
 };
 </script>
